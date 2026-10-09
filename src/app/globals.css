@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Static design tokens ─────────────────────────────────────────── */
+@theme {
+  /* Palette */
+  --color-cream:         #faf6eb;
+  --color-butter:        #fdf8d8;
+  --color-navy:          #0d1b2a;
+  --color-navy-light:    #162236;
+  --color-ink:           #0a1520;
+  --color-muted:         #8892a0;
+  --color-muted-light:   #b8c0cb;
+  --color-card:          #fefcf5;
+  --color-border:        #ede8da;
+
+  /* Skill family shading */
+  --color-skill-languages:  #0d1b2a;
+  --color-skill-frontend:   #1a2f4a;
+  --color-skill-backend:    #6b5d4f;
+  --color-skill-databases:  #6b4f6b;
+  --color-skill-tools:      #a09080;
+  --color-skill-core:       #b8b0a0;
+
+  /* Shape */
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
+
+  /* Elevation */
+  --shadow-card: 0 2px 16px 0 rgb(13 27 42 / 0.06), 0 1px 3px 0 rgb(13 27 42 / 0.04);
+  --shadow-nav:  0 4px 24px 0 rgb(13 27 42 / 0.08);
 }
 
+/* ─── Font tokens (reference next/font CSS vars set on <html>) ──────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-inter-tight), sans-serif;
+  --font-accent:  var(--font-instrument-serif), serif;
+  --font-mono:    var(--font-jetbrains-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-heading);
+  color: var(--color-navy);
+  background-color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
+}
+
+/* Fixed pseudo-element replaces background-attachment:fixed, which is broken
+   on iOS Safari. Achieves the same ambient gradient without the iOS paint bug. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(
+    ellipse 90% 70% at 20% 10%,
+    var(--color-butter) 0%,
+    transparent 70%
+  );
+}
+
+/* Keyboard-only focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-navy);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
