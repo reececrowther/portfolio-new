@@ -92,13 +92,13 @@ export default function Hero() {
           className="absolute bottom-0 left-0 right-0 z-20 flex flex-col gap-8 px-6 pb-24 sm:flex-row sm:items-end sm:justify-between max-w-7xl mx-auto w-full"
         >
           <div>
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-white/45">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-white/45 sm:text-navy">
               {site.profile.fullName}
             </p>
-            <h1 className="font-heading font-black leading-[1.05] tracking-tight text-cream text-[clamp(2rem,5.5vw,4.5rem)]">
+            <h1 className="font-heading font-black leading-[1.05] tracking-tight text-cream sm:text-navy text-[clamp(2rem,5.5vw,4.5rem)]">
               {site.profile.role}
             </h1>
-            <p className="mt-3 max-w-xs text-base text-white/55">
+            <p className="mt-3 max-w-xs text-base text-white/55 sm:text-muted">
               {site.profile.tagline}
             </p>
           </div>
